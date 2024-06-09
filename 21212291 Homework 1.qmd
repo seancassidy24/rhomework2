@@ -1,0 +1,104 @@
+---
+title: "Homework 1 Quarto Test"
+author: "Seán Cassidy 21212291"
+date: today
+date-format: long
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-line-numbers: true
+    fontsize: 1.4em
+    toc: true
+    toc-title: '**Contents**'
+    embed-resources: true
+    grid:
+      body-width: 800px
+    theme: 
+      - superhero
+  revealjs: 
+    slide-number: true
+    html-math-method: mathjax
+    theme: [default, custom-theme.css]
+    footer: ""
+    incremental: false
+    fragments: true
+    chalkboard: false
+    menu: true
+    scrollable: true
+    preview-links: false
+    embed-resources: false
+    standalone: false       
+execute: 
+  eval: true
+  echo: true
+---
+
+
+# Analysis of Air Quality in New York City
+
+## Identification of Interesting Relationship between Air Quality Variables
+
+For this short report we want to investigate the airquality dataset, which looks at a number of air quality measures taken in ___New York City___ in __1973__. The dataset is useful to see if air quality is <span style="color: red;">Bad</span> or <span style="color: green;">Good</span> but here we want to explore a significant relationship between 2 of our variables.
+
+To begin we want to examine the dataset for an understanding of its structure.
+
+```{r}
+#| label: structure-airquality
+#| echo: false
+str(airquality) # examine data structure
+```
+
+We can see that our dataset is made up of 6 variables out of 153 observations, with all the variables being of integer type except Wind which is a continuous numeric variable. More information on this dataset can be found at [link](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/airquality). With an understanding of our structure we can summarise the key statistics for each variable.
+
+```{r}
+#| label: summary-airquality
+#| echo: false
+summary(airquality) # create summary statistics
+```
+
+From the summary we can see that the different measures for the variables have a high range of difference in terms of their values, indicating that the variables are across different scales. Day and Month are both indicator variables so the summary statistics offer little value to us for these variables. We will therefore focus on the other 4 variables as part of our relationship analysis.
+
+## Air Quality Plots
+
+To first establish which our four variables have a relationship that would be most interesting to examine in more detail, we can plot the four variables together in scatter plot to examine each relationship between all variables.
+
+```{r}
+#| label: Relationships between Ozone, Solar, Wind and Temp
+#| echo: false
+#| fig-cap: "Air Quality data"
+#| fig-cap-location: bottom
+#| fig-width: 12
+#| fig-height: 14
+plot(airquality[1:4]) # produce generic scatter plots for all variables
+```
+
+There are a number of interesting possible relationships to select but we will look further into the relationship between wind and temperature. Logically we would assume that as weather is hotter that the level of wind will be lower, and this does appear to be the case as a strong negative relationship exists between our variables, but lets examine this in more detail.
+
+```{r}
+#| label: Relationship between Temperature and Wind
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Wind and Temperature Relationship Analysis"
+#| fig-cap-location: bottom
+#| fig-width: 10
+#| fig-height: 8
+library(ggplot2) # load ggplot for graph creation
+ggplot(airquality, aes(x = Temp, y = Wind)) + # create plot on our 2 airquality variables
+  geom_point(color = "purple", size = 4, alpha = 0.5) + # create scatter plot with amended point formatting
+  geom_smooth(method = "lm", se = FALSE, color = "red") + # add linear regression line
+  labs(                                                 # add labels
+    title = "Scatter Plot of Temperature vs. Wind Speed", # Create title label
+    x = "Temperature",    # create x axis label
+    y = "Wind Speed" # create y axis label
+  ) + 
+  theme(  # create theme
+    plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),   # adjust title features
+    axis.title = element_text(size = 20), # adjust axis title features
+    axis.text = element_text(size = 12) # adjust axis text features
+  )
+
+```
+
+From the scatter plot and linear regression line it is clear there is a negative relationship between wind and temperature, which we can interpret as wind speed is likely to decrease as temperature increases. Interestingly from our plot we can note a number of significant outlier values from the regression line which highlights that there are occasions present in the data where there are high incidents of wind with high temperature and vice versa.   
