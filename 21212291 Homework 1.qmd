@@ -62,7 +62,7 @@ To first establish which our four variables have a relationship that would be mo
 #| fig-cap-location: bottom
 #| fig-width: 12
 #| fig-height: 14
-plot(airquality[1:4]) # produce generic scatter plots for all variables
+plot(airquality[1:4], main = "Scatter Plots of Relationship between our variables") # produce generic scatter plots for all variables
 ```
 
 There are a number of interesting possible relationships to select but we will look further into the relationship between wind and temperature. Logically we would assume that as weather is hotter that the level of wind will be lower, and this does appear to be the case as a strong negative relationship exists between our variables, but lets examine this in more detail.
