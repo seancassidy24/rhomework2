@@ -41,15 +41,7 @@ execute:
 
 For this short report we want to investigate the airquality dataset, which looks at a number of air quality measures taken in ___New York City___ in __1973__. The dataset is useful to see if air quality is <span style="color: red;">Bad</span> or <span style="color: green;">Good</span> but here we want to explore a significant relationship between 2 of our variables.
 
-To begin we want to examine the dataset for an understanding of its structure.
-
-```{r}
-#| label: structure-airquality
-#| echo: false
-str(airquality) # examine data structure
-```
-
-We can see that our dataset is made up of 6 variables out of 153 observations, with all the variables being of integer type except Wind which is a continuous numeric variable. More information on this dataset can be found at [link](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/airquality). With an understanding of our structure we can summarise the key statistics for each variable.
+To begin we want to summarise the key statistics for each variable.
 
 ```{r}
 #| label: summary-airquality
