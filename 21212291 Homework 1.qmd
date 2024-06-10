@@ -79,7 +79,7 @@ There are a number of interesting possible relationships to select but we will l
 library(ggplot2) # load ggplot for graph creation
 ggplot(airquality, aes(x = Temp, y = Wind)) + # create plot on our 2 airquality variables
   geom_point(color = "purple", size = 4, alpha = 0.5) + # create scatter plot with amended point formatting
-  geom_smooth(method = "lm", se = FALSE, color = "red") + # add linear regression line
+  geom_smooth(method = "lm", se = FALSE, color = "green") + # add linear regression line
   labs(                                                 # add labels
     title = "Scatter Plot of Temperature vs. Wind Speed", # Create title label
     x = "Temperature",    # create x axis label
